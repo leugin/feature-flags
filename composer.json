@@ -21,7 +21,6 @@
         "php": "^7.2|^8.0",
         "growthbook/growthbook": "^1.1",
         "ext-json": "*",
-        "illuminate/support": "^7.30",
         "fakerphp/faker": "^1.20",
         "laravel/framework": "^7.30"
     },
