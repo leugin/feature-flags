@@ -22,7 +22,6 @@
         "growthbook/growthbook": "^1.1",
         "ext-json": "*",
         "fakerphp/faker": "^1.20",
-        "laravel/framework": "^7.30"
     },
     "require-dev": {
         "mockery/mockery": "^1.3",
