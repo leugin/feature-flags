@@ -21,7 +21,7 @@
         "php": "^7.2|^8.0",
         "growthbook/growthbook": "^1.1",
         "ext-json": "*",
-        "fakerphp/faker": "^1.20",
+        "fakerphp/faker": "^1.20"
     },
     "require-dev": {
         "mockery/mockery": "^1.3",
