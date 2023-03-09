@@ -44,7 +44,7 @@ trait ArrayReflectionSerialize
             $getMethod = "get".ucfirst($value->getName());
             if (method_exists($this, $getMethod)) {
                 $v = $this->{$value->getName()};
-                if (method_exists($v, 'toArray')) {
+                if (is_object($v) && method_exists($v, 'toArray')) {
                     $v = $v->toArray();
                 }
                 $props[$k] = $v;
