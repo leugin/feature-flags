@@ -20,7 +20,7 @@
     "require": {
         "php": "7.2.34",
         "growthbook/growthbook": "^1.1",
-        "ext-json": "*",
+        "ext-json": "*"
     },
     "require-dev": {
         "mockery/mockery": "^1.3",
