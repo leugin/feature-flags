@@ -1,8 +1,8 @@
 <?php
 
-namespace Miguel\FeatureFlags\Exceptions;
+namespace Leugin\FeatureFlags\Exceptions;
 
-use Miguel\FeatureFlags\Data\Constants\ExceptionCode;
+use Leugin\FeatureFlags\Data\Constants\ExceptionCode;
 
 class NotFoundException extends \DomainException
 {

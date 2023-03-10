@@ -1,8 +1,8 @@
 <?php
 declare(strict_types=1);
-namespace Miguel\FeatureFlags\Data\Dtos;
+namespace Leugin\FeatureFlags\Data\Dtos;
 
-use Miguel\FeatureFlags\Shared\ArrayReflectionSerialize;
+use Leugin\FeatureFlags\Shared\ArrayReflectionSerialize;
 
 class User
 {

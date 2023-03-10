@@ -1,6 +1,6 @@
 <?php
 
-namespace Miguel\FeatureFlags\Data\Constants;
+namespace Leugin\FeatureFlags\Data\Constants;
 
 abstract class ExceptionCode
 {

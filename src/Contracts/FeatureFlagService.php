@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Miguel\FeatureFlags\Contracts;
+namespace Leugin\FeatureFlags\Contracts;
 
 
-use Miguel\FeatureFlags\Data\Dtos\User;
+use Leugin\FeatureFlags\Data\Dtos\User;
 
 interface FeatureFlagService
 {

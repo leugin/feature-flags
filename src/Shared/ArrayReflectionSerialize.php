@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Miguel\FeatureFlags\Shared;
+namespace Leugin\FeatureFlags\Shared;
 
 use Illuminate\Support\Str;
 

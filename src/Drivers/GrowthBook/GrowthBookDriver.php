@@ -1,11 +1,11 @@
 <?php
 
-namespace Miguel\FeatureFlags\Drivers\GrowthBook;
+namespace Leugin\FeatureFlags\Drivers\GrowthBook;
 
 use Growthbook\Growthbook;
-use Miguel\FeatureFlags\Contracts\FeatureFlagService;
-use Miguel\FeatureFlags\Data\Dtos\User;
-use Miguel\FeatureFlags\Exceptions\NotFoundException;
+use Leugin\FeatureFlags\Contracts\FeatureFlagService;
+use Leugin\FeatureFlags\Data\Dtos\User;
+use Leugin\FeatureFlags\Exceptions\NotFoundException;
 
 class GrowthBookDriver implements FeatureFlagService
 {

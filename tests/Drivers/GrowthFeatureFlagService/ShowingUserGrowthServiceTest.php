@@ -3,7 +3,7 @@
 namespace Tests\Drivers\GrowthFeatureFlagService;
 
 use Faker\Factory;
-use Miguel\FeatureFlags\Data\Dtos\User;
+use Leugin\FeatureFlags\Data\Dtos\User;
 use PHPUnit\Framework\TestCase;
 use Tests\Shared\Factory\GrowthFactory;
 
