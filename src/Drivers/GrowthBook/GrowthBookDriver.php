@@ -53,10 +53,13 @@ class GrowthBookDriver implements FeatureFlagService
      */
     public function tryToConnect(string $url, $feature, int &$intent): ?array
     {
-        $apiResponse = $this->getResponse($url);
-        if (!empty($apiResponse) && !empty($apiResponse["features"])) {
-            $feature = $apiResponse["features"];
-        }
+        try {
+            $apiResponse = $this->getResponse($url);
+            if (!empty($apiResponse) && !empty($apiResponse["features"])) {
+                return$apiResponse["features"];
+            }
+        } catch (\Exception $e){}
+
         $intent++;
         return $feature;
     }
@@ -116,12 +119,8 @@ class GrowthBookDriver implements FeatureFlagService
      */
     public function getResponse(string $url)
     {
-        try
-        {
-            return json_decode(file_get_contents($url), true);
-        } catch (\Exception $e) {
-            throw new NotFoundException("Features not found in the response");
-        }
+        return json_decode(file_get_contents($url), true);
+
     }
 
     public function getUser(): ?User
