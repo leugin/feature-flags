@@ -3,22 +3,35 @@ declare(strict_types=1);
 
 namespace Leugin\FeatureFlags\Shared;
 
-use Illuminate\Support\Str;
 
+/**
+ * serialize object to array
+ */
 trait ArrayReflectionSerialize
 {
-
-
+    /**
+     * @param $offset
+     * @return bool
+     */
     public function offsetExists($offset): bool
     {
         return array_key_exists($offset, $this->toArray());
     }
 
+    /**
+     * @param $offset
+     * @return mixed
+     */
     public function offsetGet($offset)
     {
         return $this->toArray()[$offset];
     }
 
+    /**
+     * @param $offset
+     * @param $value
+     * @return void
+     */
     public function offsetSet($offset, $value)
     {
         $k = "set".ucfirst($offset);
@@ -27,6 +40,10 @@ trait ArrayReflectionSerialize
         }
     }
 
+    /**
+     * @param $offset
+     * @return void
+     */
     public function offsetUnset($offset)
     {
         $k = "set".ucfirst($offset);
@@ -35,12 +52,16 @@ trait ArrayReflectionSerialize
         }
     }
 
+    /**
+     * @return array
+     */
     public function toArray(): array
     {
         $rf = (new \ReflectionClass($this))->getProperties();
         $props = [];
         foreach ($rf as $value) {
-            $k = strtolower(Str::snake($value->getName()));
+
+            $k = strtolower(ucwords(($value->getName())));
             $getMethod = "get".ucfirst($value->getName());
             if (method_exists($this, $getMethod)) {
                 $v = $this->{$value->getName()};
@@ -53,14 +74,6 @@ trait ArrayReflectionSerialize
 
         }
         return $props;
-    }
-
-    public function empty(): bool
-    {
-//        $all = $this->toArray();
-//        return collect($all)->filter(function ($value){
-//                return is_null($value);
-//            })->count() == 0;
     }
 
 }

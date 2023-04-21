@@ -2,6 +2,7 @@
 declare(strict_types=1);
 namespace Leugin\FeatureFlags\Data\Dtos;
 
+
 use Leugin\FeatureFlags\Shared\ArrayReflectionSerialize;
 
 class User

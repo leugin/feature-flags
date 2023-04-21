@@ -14,28 +14,52 @@ class GrowthBookDriver implements FeatureFlagService
     private $global;
 
     private $user;
+    /**
+     * @var int
+     */
+    private $maxAttempts;
 
     /**
      * @param string $url
+     * @param int $maxAttempts
      */
-    public function __construct(string  $url)
+    public function __construct(string  $url, int $maxAttempts = 3)
     {
+        $this->maxAttempts = $maxAttempts;
         $this->features =  $this->loadFeatures($url);
         $this->global = $this->makeGrowthBook();
 
     }
 
-    public function loadFeatures(string $url)
+    public function loadFeatures(string $url): array
     {
-        $apiResponse = $this->getResponse($url);
-
-
-        if (empty($apiResponse) || empty($apiResponse["features"])){
-            throw new NotFoundException("Features not found in the response");
+        $feature = null;
+        $intent = 1;
+         while (is_null($feature) && $intent <= $this->maxAttempts){
+            $feature = $this->tryToConnect($url, $feature, $intent);
         }
-        return $apiResponse["features"];
+        if (is_null($feature)){
+            throw new NotFoundException("Features not found in the response object", 404);
+        }
+
+        return $feature;
     }
 
+    /**
+     * @param string $url
+     * @param $feature
+     * @param int $intent
+     * @return array
+     */
+    public function tryToConnect(string $url, $feature, int &$intent): ?array
+    {
+        $apiResponse = $this->getResponse($url);
+        if (!empty($apiResponse) && !empty($apiResponse["features"])) {
+            $feature = $apiResponse["features"];
+        }
+        $intent++;
+        return $feature;
+    }
     public function setUser(User $user): void
     {
         $this->user = $user;
@@ -88,7 +112,7 @@ class GrowthBookDriver implements FeatureFlagService
 
     /**
      * @param string $url
-     * @return mixed
+     * @return array
      */
     public function getResponse(string $url)
     {
